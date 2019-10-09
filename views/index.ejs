@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Beer is Live</title>
+    <script>
+      var datagg = <%-JSON.stringify(orgData)%>;
+    </script>
+  </head>
+  <body>
+    <div>
+      <h3>Search Beer</h3>
+      <p id="demo">hii</p>
+
+      <p>
+        <%=sampleData%>
+      </p>
+    </div>
+    <div>
+      <form>
+        <input
+          type="text"
+          name="beerName"
+          id="myInput"
+          onkeyup="search()"
+          autocomplete="false"
+        />
+        <input type="submit" />
+      </form>
+      <br />
+      <br />
+    </div>
+    <div id="foo">
+      <ul id="ulforbeer"></ul>
+    </div>
+    <script>
+      var myData = "<%=sampleData%>";
+      var future = myData.split(",");
+
+      function makeUL(array) {
+        var list = document.getElementById("ulforbeer");
+
+        for (var i = 0; i < array.length; i++) {
+          var item = document.createElement("li");
+          item.setAttribute("class", "liforbeer");
+          item.appendChild(document.createTextNode(array[i]));
+          list.appendChild(item);
+        }
+        return list;
+      }
+      document.getElementById("foo").appendChild(makeUL(future));
+
+      function search() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = document.getElementsByClassName("liforbeer");
+        console.log("hi dddu");
+
+        for (i = 0; i < li.length; i++) {
+          // a = li[i].getElementsByTagName("a")[0];
+          // txtValue = a.textContent || a.innerText;
+          txtValue = li[i].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      }
+
+      console.log("<%=sampleData %>");
+    </script>
+    <script src="demo.js"></script>
+  </body>
+</html>

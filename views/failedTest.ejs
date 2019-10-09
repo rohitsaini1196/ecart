@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Beer is Live</title>
+    <script>
+      var x =<%-JSON.stringify(data)%>
+      console.log(x.length);
+    </script>
+  </head>
+
+  <body>
+    <div class="list-group">
+      <p>qertyu</p>
+
+      <div>
+        <% for(var i=0; i < data.length; i++) { %>
+        <tr>
+          <h3><%= data[i].beerName %></h3>
+          <p><%= data[i].beerPrice %></p>
+        </tr>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

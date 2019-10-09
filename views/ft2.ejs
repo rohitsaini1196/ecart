@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Beer is Live</title>
+    <style>
+      .hari {
+        padding: 20px;
+        margin: 40px;
+      }
+
+      li {
+        list-style: none;
+        margin-left: -1em;
+        font-size: 22px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form>
+      <input
+        type="text"
+        name="beerName"
+        id="myInput"
+        onkeyup="search()"
+        autocomplete="false"
+      />
+      <input type="submit" />
+    </form>
+
+    <form action="cart" method="POST">
+      <input type="submit" />
+    </form>
+
+    <div id="ggwp"></div>
+
+    <script>
+      var x =<%-JSON.stringify(data)%>
+          console.log(x.length);
+
+      var div = document.getElementById("ggwp");
+      console.log(div);
+
+
+      for (var i = 0; i < x.length; i++) {
+          var div2nd = document.createElement('div');
+          div2nd.setAttribute('id', 'divid' + x[i].beerId);
+           div2nd.setAttribute('class', 'hari');
+          var h5 = document.createElement('li');
+          var image = document.createElement("img");
+          image.setAttribute('src', x[i].beerImage);
+          image.setAttribute('width' , '300');
+          image.setAttribute('height', "160");
+
+          h5.setAttribute("class", 'name-data');
+          h5.setAttribute('id', 'id'+x[i].beerId);
+
+          h5.innerHTML = x[i].beerName;
+          div2nd.appendChild(h5);
+          var p = document.createElement('p');
+
+
+          var p2 = document.createElement('p');
+          p2.setAttribute('class', 'dis');
+
+          p.innerHTML =  "<strong>Price: ₹</strong>" + x[i].beerPrice;
+          p2.innerHTML = x[i].beerDiscription;
+          div2nd.appendChild(image);
+
+          div2nd.appendChild(p);
+          div2nd.appendChild(p2);
+          div.appendChild(div2nd);
+      }
+
+
+
+       function search() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("ggwp");
+            li = document.getElementsByClassName("name-data");
+            divForHide = document.getElementsByClassName('hari');
+            console.log("hi dddu");
+
+            for (b= 0; b < li.length; b++) {
+                // a = li[i].getElementsByTagName("a")[0];
+                // txtValue = a.textContent || a.innerText;
+                txtValue = li[b].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    divForHide[b].style.display = "";
+                } else {
+                    divForHide[b].style.display = "none";
+                }
+            }
+        }
+    </script>
+  </body>
+</html>

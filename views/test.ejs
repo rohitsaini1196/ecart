@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Beer is Live</title>
+    <script></script>
+  </head>
+
+  <body>
+    <h3>qwerty</h3>
+
+    <div class="list-group">
+      <!-- loop over blog posts and render them -->
+      <% data.forEach((post) => { %>
+      <a href="" class="list-group-item">
+        <h4 class="list-group-item-heading"><%= post.beerName %></h4>
+        <p class="list-group-item-text"><%= post.beerId %></p>
+        <p class="list-group-item-text"><%= post.beerPrice %></p>
+      </a>
+      <% }) %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Beer is Live</title>
+    <script>
+      var x =<%-JSON.stringify(data)%>
+          console.log(x);
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+      integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+      integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+      integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      body {
+        padding-top: 80px;
+      }
+
+      .show-cart li {
+        display: flex;
+      }
+
+      .card {
+        margin-bottom: 20px;
+      }
+
+      .card-img-top {
+        width: 200px;
+        height: 200px;
+        align-self: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Nav -->
+    <nav class="navbar navbar-inverse bg-inverse fixed-top bg-faded">
+      <div class="row">
+        <div class="col">
+          <button
+            id="chupke"
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#cart"
+          >
+            Cart (<span class="total-count"></span>)</button
+          ><button class="clear-cart btn btn-danger">Clear Cart</button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Search bar or button -->
+
+    <center>
+      <form>
+        <input
+          type="text"
+          name="beerName"
+          id="myInput"
+          onkeyup="search()"
+          autocomplete="false"
+        />
+        <input type="submit" />
+      </form>
+    </center>
+    <br />
+    <br />
+
+    <!-- Main -->
+    <div class="container">
+      <div class="row" id="vipp"></div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="cart"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <form action="orderNow" method="POST">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="text" value="" id="all-data" name="alldata" />
+              <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <table class="show-cart table"></table>
+              <div>Total price: $<span class="total-cart"></span></div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-primary" id="order-now">
+                Order now
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function search() {
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+
+        li = document.getElementsByClassName("card-title");
+        divForHide = document.getElementsByClassName("main-div-ggwp");
+        console.log("hi dddu");
+
+        for (b = 0; b < li.length; b++) {
+          // a = li[i].getElementsByTagName("a")[0];
+          // txtValue = a.textContent || a.innerText;
+          txtValue = li[b].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            divForHide[b].style.display = "";
+          } else {
+            divForHide[b].style.display = "none";
+          }
+        }
+      }
+
+      function makeBigDiv() {
+        var sahil, div, divCard, divCardBlock, divh4, divp, image, a;
+        sahil = document.getElementById("vipp");
+        div = document.createElement("div");
+        div.setAttribute("class", "col main-div-ggwp");
+        divCard = document.createElement("div");
+        divCard.setAttribute("class", "card");
+        divCard.setAttribute("style", "width: 20rem;");
+
+        image = document.createElement("img");
+        image.setAttribute("class", "card-image-top");
+        image.setAttribute("src", "");
+        image.setAttribute("class", "image-beer");
+        image.setAttribute("height", "170");
+        image.setAttribute("width", "317");
+
+        divCardBlock = document.createElement("div");
+        divCardBlock.setAttribute("class", "card-block");
+        divh4 = document.createElement("h4");
+        divh4.setAttribute("class", "card-title");
+        divh4.innerHTML = "Laddu";
+        divp = document.createElement("p");
+        divp.setAttribute("class", "card-text");
+        divp.innerHTML = "";
+
+        a = document.createElement("a");
+        a.setAttribute("href", "#");
+        a.setAttribute("data-name", "");
+        a.setAttribute("data-price", "0");
+        a.setAttribute("class", "add-to-cart btn btn-primary card-data");
+        a.innerHTML = "Add to CART";
+
+        sahil.appendChild(div);
+        div.appendChild(divCard);
+        divCard.appendChild(image);
+        divCard.appendChild(divCardBlock);
+        divCardBlock.appendChild(divh4);
+        divCardBlock.appendChild(divp);
+        divCardBlock.appendChild(a);
+      }
+
+      for (var i = 0; i < x.length; i++) {
+        makeBigDiv();
+      }
+      var cardTitle = document.getElementsByClassName("card-title");
+      var cardPrice = document.getElementsByClassName("card-text");
+      var cardImage = document.getElementsByClassName("image-beer");
+      var cardData = document.getElementsByClassName("card-data");
+      for (var j = 0; j < x.length; j++) {
+        cardTitle[j].innerHTML = x[j].beerName;
+        cardPrice[j].innerHTML = "Price: ₹" + x[j].beerPrice;
+        cardImage[j].src = x[j].beerImage;
+        cardData[j].setAttribute("data-name", x[j].beerName);
+        cardData[j].setAttribute("data-price", x[j].beerPrice);
+      }
+    </script>
+    <script src="demo.js"></script>
+  </body>
+</html>
