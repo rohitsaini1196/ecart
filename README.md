@@ -1,7 +1,7 @@
 # ecart
 
 
-### Online portal for ordering beer online.
+## Online Portal For Ordering Beer
 #### Developed a portal for ordering beer online. You can add beers to your cart and after finish order server will get your request and can go further process.
 Screenshots
 
