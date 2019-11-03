@@ -1,8 +1,13 @@
 # ecart
 
-
 ## Online Portal For Ordering Beer
-#### Developed a portal for ordering beer online. You can add beers to your cart and after finish order server will get your request and can go further process.
+
+##### Features
+1. Support Cart System - You can chose and add to cart
+2. Checkout and Payment - Once chosen, you can checkout and pay online or chose COD.
+3. Search - You can search for a perticular drink
+4. Notification - E-mail notification when you order something.
+
 Screenshots
 
 
